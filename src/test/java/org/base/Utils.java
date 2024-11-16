@@ -100,11 +100,13 @@ public class Utils {
 		for (WebElement element : elements) {
 			act.moveToElement(element).perform();
 			Thread.sleep(600);
-			for (WebElement elementText : elementTexts) {
-				String text = elementText.getText();
-				LoggerClass.logInfo(text);
-			}
-			System.out.println();
+			String text= element.getText();
+			LoggerClass.logInfo(text);
+//			for (WebElement elementText : elementTexts) {
+//				String text = elementText.getText();
+//				LoggerClass.logInfo(text);
+//			}
+//			System.out.println();
 		}
 	}
 
