@@ -35,7 +35,6 @@ public class Utils {
 	}
 
 	public void openUrl(String url) {
-		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.get(url);
 		LoggerClass.logInfo("url opened");
@@ -44,6 +43,7 @@ public class Utils {
 	public static ChromeOptions chromeOptions() {
 		String projectPath = System.getProperty("user.dir");
 		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--start-maximized");
 		options.addArguments("--disable-extensions");
 		options.addArguments("--disable-infobars");
 		options.addArguments("--disable-gpu");

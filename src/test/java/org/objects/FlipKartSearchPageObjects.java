@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.base.LoggerClass;
 import org.base.Utils;
 
 public class FlipKartSearchPageObjects {
@@ -47,17 +47,15 @@ public class FlipKartSearchPageObjects {
 				+ "')]/parent::div/parent::div/parent::a/parent::div/parent::div";
 
 		String nextButtonXpath = "//*[contains(text(),'Next')]/parent::a";
-
+		int pageCount = 1;
 		while (!elementFound) {
 			try {
-				// Locate the primary element (e.g., row containing the primary key text)
 				WebElement primaryElement = driver.findElement(By.xpath(prodDynamicXpath));
 				elementFound = true; // Exit the loop since the elements are found
 				primaryElement.click();
-				Thread.sleep(500);
 
 			} catch (NoSuchElementException e) {
-				// If elements are not found on the current page, try to go to the next page
+				LoggerClass.logInfo("Page No:" + pageCount++);
 				WebElement nextButton = utils.tryToFindXpath(nextButtonXpath);
 				utils.isEnabled(nextButton, 10);
 			}
